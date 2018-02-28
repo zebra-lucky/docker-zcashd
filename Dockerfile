@@ -14,6 +14,9 @@ RUN useradd -u ${USER_ID} -g zcash -s /bin/bash -m -d /zcash zcash
 
 RUN chown zcash:zcash -R /zcash
 
+RUN apt-get update && apt-get install -y wget \
+    && rm -rf /var/lib/apt/lists/*
+
 ADD https://z.cash/downloads/zcash-1.0.14-linux64.tar.gz /tmp/
 RUN tar -xzvf /tmp/zcash-1.0.14-linux64.tar.gz -C /tmp/ \
     && cp /tmp/zcash-1.0.14/bin/*  /usr/local/bin \
