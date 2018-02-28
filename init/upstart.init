@@ -1,0 +1,15 @@
+# Copy to /etc/init/docker-zcashd.conf
+description "Docker container for zcashd p2p node"
+start on filesystem and started docker
+stop on runlevel [!2345]
+respawn
+pre-start script
+  # Clean-up if left behind
+  docker rm -f zcashd-node || true
+  
+  # Attempt to always update and fail silently if the network isn't ready
+  docker pull kylemanna/zcashd || true
+end script
+script
+  exec docker run --rm -v zcashd-data:/zcash --name=zcashd-node --rm -p 8233:8233 -p 127.0.0.1:8232:8232 kylemanna/zcashd
+end script

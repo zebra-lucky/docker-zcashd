@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -ex
+
+if [ ! -d "$HOME/.zcash-params" ]; then
+  zcash-fetch-params
+fi
+
+# This shouldn't be in the Dockerfile or containers built from the same image
+# will have the same credentials.
+if [ ! -e "$HOME/.zcash/zcash.conf" ]; then
+    mkdir -p $HOME/.zcash
+
+    echo "Creating zcash.conf"
+
+    # Seed a random password for JSON RPC server
+    cat <<EOF > $HOME/.zcash/zcash.conf
+disablewallet=${DISABLEWALLET:-1}
+printtoconsole=${PRINTTOCONSOLE:-1}
+rpcuser=${RPCUSER:-zcashrpc}
+rpcpassword=${RPCPASSWORD:-`dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64`}
+txindex=1
+EOF
+
+fi
+
+cat $HOME/.zcash/zcash.conf
+
+echo "Initialization completed successfully"
