@@ -2,7 +2,7 @@
 
 set -ex
 
-if [ ! -d "$HOME/.zcash-params" ]; then
+if [ ! -e "$HOME/.zcash-params/sprout-verifying.key" ]; then
   zcash-fetch-params
 fi
 
