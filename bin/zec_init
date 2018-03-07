@@ -15,6 +15,7 @@ if [ ! -e "$HOME/.zcash/zcash.conf" ]; then
 
     # Seed a random password for JSON RPC server
     cat <<EOF > $HOME/.zcash/zcash.conf
+testnet=${TESTNET:-0}
 disablewallet=${DISABLEWALLET:-1}
 printtoconsole=${PRINTTOCONSOLE:-1}
 rpcuser=${RPCUSER:-zcashrpc}
