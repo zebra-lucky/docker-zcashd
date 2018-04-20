@@ -17,10 +17,10 @@ RUN chown zcash:zcash -R /zcash
 RUN apt-get update && apt-get install -y wget libdigest-sha-perl libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-ADD https://z.cash/downloads/zcash-1.0.14-linux64.tar.gz /tmp/
-RUN tar -xzvf /tmp/zcash-1.0.14-linux64.tar.gz -C /tmp/ \
-    && cp /tmp/zcash-1.0.14/bin/*  /usr/local/bin \
-    && rm -rf /tmp/zcash-1.0.14-linux64.tar.gz
+RUN wget -O zcash.tar.gz https://z.cash/downloads/zcash-1.1.0-linux64.tar.gz \
+    && tar -xzvf zcash.tar.gz -C /tmp/  && rm zcash.tar.gz \
+    && cp /tmp/zcash-*/bin/*  /usr/local/bin \
+    && rm -rf /tmp/zcash-*
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
