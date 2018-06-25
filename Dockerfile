@@ -33,7 +33,7 @@ USER zcash
 
 VOLUME ["/zcash"]
 
-EXPOSE 8232 8233
+EXPOSE 18232 18233
 
 WORKDIR /zcash
 
