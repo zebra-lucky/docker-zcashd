@@ -17,7 +17,7 @@ RUN chown zcash:zcash -R /zcash
 RUN apt-get update && apt-get install -y wget libdigest-sha-perl libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -O zcash.tar.gz https://z.cash/downloads/zcash-1.1.1-linux64.tar.gz \
+RUN wget -O zcash.tar.gz https://z.cash/downloads/zcash-1.1.2-linux64.tar.gz \
     && tar -xzvf zcash.tar.gz -C /tmp/  && rm zcash.tar.gz \
     && cp /tmp/zcash-*/bin/*  /usr/local/bin \
     && rm -rf /tmp/zcash-*
