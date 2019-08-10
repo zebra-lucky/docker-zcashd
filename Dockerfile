@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 MAINTAINER Kyle Manna <kyle@kylemanna.com>
 
 ARG USER_ID
