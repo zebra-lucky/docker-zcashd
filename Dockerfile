@@ -14,7 +14,9 @@ RUN useradd -u ${USER_ID} -g zcash -s /bin/bash -m -d /zcash zcash
 
 RUN chown zcash:zcash -R /zcash
 
-RUN apt-get update && apt-get install -y wget libdigest-sha-perl libgomp1 \
+RUN apt-get update \
+    && apt-get install -y wget libdigest-sha-perl libgomp1 \
+        libstdc++6 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget -O zcash.tar.gz https://z.cash/downloads/zcash-2.0.6-linux64.tar.gz \
