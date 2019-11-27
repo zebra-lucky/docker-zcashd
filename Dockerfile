@@ -1,5 +1,5 @@
-FROM ubuntu:bionic
-MAINTAINER Kyle Manna <kyle@kylemanna.com>
+FROM debian:stretch-slim
+MAINTAINER zebra.lucky@gmail.com
 
 ARG USER_ID
 ARG GROUP_ID
@@ -19,7 +19,7 @@ RUN apt-get update \
         libstdc++6 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -O zcash.tar.gz https://z.cash/downloads/zcash-2.0.6-linux64.tar.gz \
+RUN wget -O zcash.tar.gz https://z.cash/downloads/zcash-2.1.0-1-linux64-debian-stretch.tar.gz \
     && tar -xzvf zcash.tar.gz -C /tmp/  && rm zcash.tar.gz \
     && cp /tmp/zcash-*/bin/*  /usr/local/bin \
     && rm -rf /tmp/zcash-*
