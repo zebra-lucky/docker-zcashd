@@ -19,8 +19,13 @@ RUN apt-get update \
         libstdc++6 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -O zcash.tar.gz https://z.cash/downloads/zcash-2.1.0-1-linux64-debian-stretch.tar.gz \
-    && tar -xzvf zcash.tar.gz -C /tmp/  && rm zcash.tar.gz \
+RUN download_url=https://z.cash/downloads/ \
+    && version=3.1.0 \
+    && tar_file=zcash-${version}-linux64-debian-stretch.tar.gz \
+    && sum=48f9ff15ffc2da9f5890df16cddd92ac58d104b820414f3d02cd77d78664c5c2 \
+    && wget ${download_url}${tar_file} \
+    && echo $sum $tar_file | sha256sum -c \
+    && tar -xzvf $tar_file -C /tmp/ && rm $tar_file \
     && cp /tmp/zcash-*/bin/*  /usr/local/bin \
     && rm -rf /tmp/zcash-*
 
