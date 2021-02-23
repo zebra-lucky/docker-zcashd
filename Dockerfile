@@ -20,9 +20,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN download_url=https://z.cash/downloads/ \
-    && version=3.1.0 \
+    && version=4.2.0 \
     && tar_file=zcash-${version}-linux64-debian-stretch.tar.gz \
-    && sum=48f9ff15ffc2da9f5890df16cddd92ac58d104b820414f3d02cd77d78664c5c2 \
+    && sum=386633ba5f740252830fab9f6dd6bc9cb31514357643b7a5caf11f5c4faa63af \
     && wget ${download_url}${tar_file} \
     && echo $sum $tar_file | sha256sum -c \
     && tar -xzvf $tar_file -C /tmp/ && rm $tar_file \
